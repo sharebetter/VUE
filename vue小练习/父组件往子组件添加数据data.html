@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="js/bootstrap.min.css"/>
+	<!--<link rel="stylesheet" type="text/css" href="isotope-docs.css"/>-->
+	<!--<script src="https://unpkg.com/vue"></script>-->
+	<script src="js/Vue.js"></script>
+	
+</head>
+<body>	
+		<div id="app">						
+            <!--第一种写法-->
+			<!--<mingzi :abc='name' :efg='title'></mingzi>-->
+			<!--第二种写法-->
+			<mingzi :abc='da'></mingzi>
+			<z2></z2>
+		</div>
+		
+		
+	<script src="jquery-1.11.0.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<!--<script src="jquery.isotope.js"></script>-->
+	<!--<script src="isotope.pkgd.min.js"></script>-->
+
+    <script>
+//  	全局定义写法
+    	Vue.component('mingzi',{
+//  		第一种写法
+//  		template:"<h1 style='color: red;'>{{abc}} {{efg}}</h1>",  
+//          props:['abc','efg'],
+//           第二种写法
+            template:"<h1 style='color:red;'>{{abc}}<br/>{{abc.name}}<br/>{{abc.title}}</h1>",
+            props:['abc'],
+           //abc,efg为属性；
+    		
+    		data:function(){
+    			return {
+    				
+    			}
+    		},
+//  		methods:{
+//  			a:function(){
+//  				alert(1);
+//  			}
+//  		}
+    		
+    	});
+    	
+    	var app=new Vue({
+    		el:"#app",
+    		data:{
+//  			第一种写法
+//  			'name':'这是Props',
+//  			'title':'很重要'
+              //第二种写法
+              da:{
+              	'name':'这是Props',
+              	'title':'很重要',
+              }
+    		},
+
+    		methods:{
+    			a:function(){
+    				alert(2);
+    			}
+    		}
+    		
+    	})
+    </script>
+</body>
+
+</html>

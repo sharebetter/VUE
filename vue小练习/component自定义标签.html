@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="js/bootstrap.min.css"/>
+	<!--<link rel="stylesheet" type="text/css" href="isotope-docs.css"/>-->
+	<!--<script src="https://unpkg.com/vue"></script>-->
+	<script src="js/Vue.js"></script>
+	
+</head>
+<body>	
+		<div id="app">		
+			<input type="radio" value="男" v-model="a" />
+			<input type="radio" value="女" v-model="a"/>
+			{{a}}	<br/>
+			<input type="checkbox" value="aa" v-model="b"/>
+			<input type="checkbox" value="bb" v-model="b" />
+			<input type="checkbox" value="cc" v-model="b"/>
+			{{b}}  <br/>
+			<select v-model="c">
+				<option value="北京">北京</option>
+				<option value="厦门">厦门</option>
+				<option value="上海">上海</option>				
+			</select>{{c}}<br/><p></p>
+			<select v-model="d" multiple>
+				<option value="北京">北京</option>
+				<option value="厦门">厦门</option>
+				<option value="上海">上海</option>
+			</select><br/>
+			{{d}}
+			<br/>
+			<br/>
+			<br />
+			<p>
+			普通v-model:
+			<input type="text"  value="" v-model="e"/>
+			{{e}}
+			</p>
+			<p>
+				失去焦点v-model.lazy:
+				<input type="text" value="" v-model.lazy="f"/>
+				{{f}}
+			</p>
+			<p>
+				去除首尾空格v-model.trim:
+				<input type="text" id="" value="" v-model.trim='h'/>
+				{{h}}
+			</p>
+			<mingzi></mingzi>
+			<z2></z2>
+		</div>
+		
+		
+	<script src="js/jquery-1.11.0.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!--<script src="jquery.isotope.js"></script>-->
+	<!--<script src="isotope.pkgd.min.js"></script>-->
+
+    <script>
+//  	全局定义写法
+    	Vue.component('mingzi',{template:"<h1>这是自定义标签</h1>"});
+    	
+    	var app=new Vue({
+    		el:"#app",
+    		data:{
+    			a:'',
+    			b:[],
+    			c:'厦门',
+    			d:'',
+    			e:'',
+    			f:'',
+    			h:''
+    		},
+//  		第二种写法
+    		components:{
+    			'z2':{
+    				template:"<h1 style='color: red;'>这是第二个自定义标签</h2>",
+    			}
+    		}
+    		
+    	})
+    </script>
+</body>
+
+</html>

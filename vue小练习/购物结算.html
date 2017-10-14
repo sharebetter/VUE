@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css"/>
+	<!--<link rel="stylesheet" type="text/css" href="isotope-docs.css"/>-->
+	<!--<script src="https://unpkg.com/vue"></script>-->
+	<script src="Vue.js"></script>
+	
+</head>
+<body>	
+		<div id="app">
+			<div v-if="page=='login'"><h1>登录</h1></div>
+			<div v-else-if="page=='zhuce'"><h1>注册</h1></div>
+			<button @click="fn()">show</button>
+		    <div v-if="page=='zhuce'"><button @click="page='login'">登录</button></div>
+		    <div v-if="page=='login'"><button @click="page='zhuce'">注册</button></div>
+		    
+		    <div v-else-if="page=='show'">
+		    	<ul>
+		    		<li v-for="i in shop">{{i.name}}---{{i.spend}}---<button @click="page='pingjia'">购买</button>
+		    		</li>
+		    	</ul>
+		    </div>
+		    <div v-if="page=='pingjia'">评价:
+		   		 <input type="text" v-model="count"/>
+		   		 
+		   		 	
+		   		 		<a v-for="i in star()">{{i}}</a>
+		   		
+		   		 <button @click="page='dingdan'">订单添加</button>
+		    </div>
+		    <div v-if="page=='dingdan'">
+		    	<ul>		    		
+		    		<li v-for="item in shop">
+		    			<input type="checkbox" @click="check(item)">
+		    			商品：{{item.name}}<br/>		    			
+		    			<button @click="shuliang(0,item)">-</button>
+		    		    <input type="name" v-bind:value="item.num || 0" />
+		    		   <button @click="shuliang(1,item)">+</button>
+		    		   单价:{{item.spend | yuan}} <br/>
+		    		   金额:{{item.spend*item.num | yuan}}
+		    		</li><br/>
+		    		总金额:{{all | yuan}}
+		    	</ul>
+		    </div>
+		</div>
+		
+		
+	<script src="jquery-1.11.0.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<!--<script src="jquery.isotope.js"></script>-->
+	<!--<script src="isotope.pkgd.min.js"></script>-->
+
+    <script>
+    	var app=new Vue({
+    		el:'#app',
+    		data:{
+    			show:false,
+    			page:'login',
+    			count:2.5,
+    			news:[{'name':'曾海明',age:22,'love':'女'},{'name':'林一会',age:21},{'name':'欧阳时康',age:19},{'name':'黄明珠',age:24}],
+    			shop:[{'name':'牙刷',spend:10},{'name':'鼠标',spend:30},{'name':'显示器',spend:50},],
+    		},    		
+    		methods:{
+    			fn:function(){
+    				this.page='show';  
+    			},
+    			star:function(){
+    				var arr=[];
+    				var num=Math.floor(this.count);
+    				for(var i=0;i<num;i++){
+    					arr.push('☀');
+    				}
+    				var xiaoshu=this.count-num>0.4;
+    				if(xiaoshu){
+    					arr.push('❤')
+    				}
+    				while(arr.length<5){
+    					arr.push('♡')
+    				}
+    				return arr;
+    			},
+    			shuliang:function(num,item){
+    				if(!item.num){
+    					this.$set(item,'num',0);
+    				}    				
+//  				item.act=!item.act;
+    				if(num){
+    					item.num++;
+    				}else{    					
+    					item.num--;
+    					if(item.num<0){
+    						item.num=0;
+    					}
+    				}
+    			},
+    			check:function(item){
+    				if(!item.act){
+    					this.$set(item,'act',0)
+    				}
+    				if(!item.num){
+    					this.$set(item,'num',0);
+    				}
+    				item.act=!item.act;
+    			}
+    			
+    		},
+    		filters:{
+    		   yuan:function(val){
+//  		   	if(!val){
+//  		   		val=0;
+//  		   	}或
+                if(isNaN(val)){
+                	val=0;
+                }
+    		   	  return val+"元";
+    		   }
+    		},
+    		computed:{
+    			all:function(){
+    				var all=0;
+    				
+    				for(var i in this.shop){
+	    				if(this.shop[i].act){
+	    					all+=this.shop[i].num*this.shop[i].spend;
+	    				}
+    				}
+
+    				return all;
+    			}
+    		}
+
+            
+    	})
+    </script>
+</body>
+
+</html>

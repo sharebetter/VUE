@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="js/bootstrap.min.css"/>
+	<!--<link rel="stylesheet" type="text/css" href="isotope-docs.css"/>-->
+	<!--<script src="https://unpkg.com/vue"></script>-->
+	<script src="js/Vue.js"></script>
+	<style>
+	
+	</style>
+</head>
+<body>	
+	<div class="container" id="app"><h1>实物添加Todolist</h1>
+		<div class="input-group">
+	        <input type="text" class="form-control" v-model="msg"/>
+	        <span class="input-group-btn">
+	          <button @click="addlist(msg)" class="btn btn-success">添加</button>
+	        </span>
+	    </div>
+	    <ul class="list-group">
+	    	<h3 v-show="flag">任务列表</h3>
+	    	<li class="list-group-item" v-for="(item,index) in list">
+	    	  	<span>{{item}}</span><a class="btn btn-danger pull-right" style="margin-top: -7px;" href="javascript:" @click="dellist(index)">删除</a>
+	    	</li>
+	    </ul>
+	</div>		
+
+		
+	<script src="js/jquery-1.11.0.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!--<script src="jquery.isotope.js"></script>-->
+	<!--<script src="isotope.pkgd.min.js"></script>-->
+
+    <script>
+    	var app=new Vue({
+    		el:"#app",
+    		data:{
+    			msg:'',
+    			list:[],
+    			flag:false,
+    		},
+    		methods:{
+    			addlist:function(msg){
+    				if(msg){
+    				 this.list.push(msg);     				 
+    				}
+    				this.flag=showHide(this.list,this.flag);
+    			},
+    			dellist:function(index){
+    				this.list.splice(index,1);
+    				this.flag=showHide(this.list,this.flag);    								
+    			},    		    
+    		}
+    	})
+    	function showHide(list,flag){
+			if(list){
+				if(list.length>0){
+					flag=true;
+				}else{
+					flag=false;
+				}
+			}
+			return flag;
+		}
+    </script>
+</body>
+
+</html>
