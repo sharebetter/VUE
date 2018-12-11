@@ -14,7 +14,8 @@
 >与商城类似的单页面应用 
 
 ### vue-pizza-case:
->npm install
->npm start
-> vue + vue-router + vuex + axios
+>　npm install
+>　npm start
+>　vue + vue-router + vuex + axios
+
 ![image](https://github.com/sharebetter/VUE/blob/master/itemImage/vue-pizza-case.gif)  
