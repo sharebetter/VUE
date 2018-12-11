@@ -1,4 +1,6 @@
 # VUE
+> 1. npm install
+> 2. npm start
 ### 1. vue+express项目：
 >　主要技术栈: 
 >　　vue-cli 2.0全家桶 + node express框架 + mongodb数据库 + vuex + axios
@@ -14,8 +16,6 @@
 >与商城类似的单页面应用 
 
 ### vue-pizza-case:
->　npm install
->　npm start
->　vue + vue-router + vuex + axios
+>　　vue + vue-router + vuex + axios
 
 ![image](https://github.com/sharebetter/VUE/blob/master/itemImage/vue-pizza-case.gif)  
